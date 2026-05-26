@@ -35,13 +35,25 @@ function obtenerUsuarioActual() {
     return null;
   }
 }
-
+function corregirTexto(texto) {
+  if (!texto) return '';
+  return String(texto)
+    .replaceAll('Ã¡', 'á')
+    .replaceAll('Ã©', 'é')
+    .replaceAll('Ã­', 'í')
+    .replaceAll('Ã³', 'ó')
+    .replaceAll('Ãº', 'ú')
+    .replaceAll('Ã±', 'ñ')
+    .replaceAll('Ã', 'Á')
+    .replaceAll('Ã‰', 'É')
+    .replaceAll('Ã"', 'Ó');
+}
 function configurarNavbarAdmin(usuario) {
   const nav = document.getElementById('navAdmin');
   if (!nav) return;
 
   nav.innerHTML = `
-    <span class="admin-nav-user">Hola, ${usuario.nombre}</span>
+    <span class="admin-nav-user">Hola, ${corregirTexto(usuario.nombre)}</span>
     <a href="index.html">Catálogo</a>
     <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
   `;
